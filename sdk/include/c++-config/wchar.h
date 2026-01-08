@@ -8,7 +8,12 @@
  * instantiations that would require anything in this file but the identifiers
  * must exist.
  */
+#include "wctype.h" // for wint_t
 #include <string.h>
+
+#ifndef __cplusplus
+typedef short wchar_t;
+#endif
 
 /**
  * libc++ headers require wchar.h to exist with a definition of an mbstate_t
