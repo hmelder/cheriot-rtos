@@ -57,14 +57,14 @@ _Static_assert((wsize & (wsize - 1)) == 0);
 
 void *memcpy(void *dst0, const void *src0, size_t length)
 {
-	char *      dst = dst0;
+	char       *dst = dst0;
 	const char *src = src0;
 	size_t      t;
 
 	if (length == 0 || dst == src)
 		goto done;
 
-		// Macros: loop-t-times; and loop-t-times, t>0.
+	// Macros: loop-t-times; and loop-t-times, t>0.
 #define TLOOP(s)                                                               \
 	if (t)                                                                     \
 	TLOOP1(s)
@@ -128,3 +128,21 @@ void *memmove(void *dst0, const void *src0, size_t length)
 	return memcpy(dst0, src0, length);
 }
 #endif
+
+void *memccpy(void *t, const void *f, int c, size_t n)
+{
+	if (n)
+	{
+		unsigned char       *tp = t;
+		const unsigned char *fp = f;
+		unsigned char        uc = c;
+		do
+		{
+			if ((*tp++ = *fp++) == uc)
+			{
+				return tp;
+			}
+		} while (--n != 0);
+	}
+	return NULL;
+}
