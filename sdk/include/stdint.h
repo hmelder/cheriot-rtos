@@ -76,7 +76,8 @@ typedef __INT_LEAST64_TYPE__ int_least64_t;
 typedef __INT_FAST64_TYPE__  int_fast64_t;
 #define INT64_C(x) __constant_integer_suffix(x, __INT64_C_SUFFIX__)
 #define INT64_MAX __INT64_MAX__
-#define INT64_MIN ((-INT64_C(INT64_MAX)) - 1)
+// HACK: invalid suffix 'LLLL' on integer constant
+#define INT64_MIN ((-INT64_MAX) - 1)
 #define INT_LEAST64_MIN __INT_LEAST64_MIN__
 #define INT_FAST64_MIN __INT_FAST64_MIN__
 #define INT_LEAST64_MAX __INT_LEAST64_MAX__
