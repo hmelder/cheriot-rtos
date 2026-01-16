@@ -8,6 +8,7 @@ library("string")
 		"strstr.cc",
 		"strchr.c",
 		"strlcpy.c",
+		"strerror.c",
 		"memchr.c",
 		"memrchr.c"
 	)
