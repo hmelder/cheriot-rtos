@@ -65,6 +65,7 @@ static inline int printf(const char *format, ...)
 }
 #endif
 
+int __cheri_libcall fputc( int ch, FILE* stream );
 int __cheri_libcall snprintf(char *str, size_t size, const char *format, ...);
 int __cheri_libcall vsnprintf(char *str,
                               size_t      size,

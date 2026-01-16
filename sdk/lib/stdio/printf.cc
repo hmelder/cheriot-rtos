@@ -721,3 +721,8 @@ int __cheri_libcall snprintf(char *str, size_t size, const char *format, ...)
 
 	return rv;
 }
+
+int __cheri_libcall fputc( int ch, FILE* stream ) {
+    static_cast<volatile Uart *>(stream)->blocking_write(ch);
+    return ch;
+}
