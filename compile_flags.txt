@@ -1,5 +1,6 @@
 -xc++-header
 -std=c++23
+-std=c23
 -Qunused-arguments
 -target
 riscv32cheriot-unknown-unknown
