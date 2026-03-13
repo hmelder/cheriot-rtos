@@ -4,6 +4,8 @@
 #ifndef _ERRNO_H_
 #define _ERRNO_H_
 
+// NOTE: Keep in sync with strerror.c
+
 #define ECOMPARTMENTFAIL 1 // Compartment failed
 #define EPERM 2            // Operation not permitted.
 #define ENOENT 3           // No such file or directory.
