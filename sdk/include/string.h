@@ -56,6 +56,7 @@ CHERIOT_DECLARE_STANDARD_LIBCALL(strlcpy,
                                  char       *dest,
                                  const char *src,
                                  size_t      n)
+CHERIOT_DECLARE_STANDARD_LIBCALL(strerror, char *, int errnum)
 
 /**
  * Explicit bzero is a memset variant that the compiler is not permitted to

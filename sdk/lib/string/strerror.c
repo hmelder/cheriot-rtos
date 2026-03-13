@@ -1,0 +1,106 @@
+// Copyright SCI Semiconductor and CHERIoT Contributors.
+// SPDX-License-Identifier: MIT
+
+#include <string.h>
+#include <errno.h>
+
+static constexpr size_t ErrnoStrMapSize = ENOTENOUGHTRUSTEDSTACK + 1;
+
+static const char *const ErrnoStrMap[ErrnoStrMapSize] = {
+  [ECOMPARTMENTFAIL] = "Compartment failed",
+  [EPERM]            = "Operation not permitted.",
+  [ENOENT]           = "No such file or directory.",
+  [ESRCH]            = "No such process.",
+  [EINTR]            = "Interrupted function.",
+  [EIO]              = "I/O error.",
+  [ENXIO]            = "No such device or address.",
+  [E2BIG]            = "Argument list too long.",
+  [ENOEXEC]          = "Executable file format error.",
+  [EBADF]            = "Bad file descriptor.",
+  [ECHILD]           = "No child processes.",
+  [EAGAIN]           = "Resource unavailable, try again.",
+  [ENOMEM]           = "Not enough space.",
+  [EACCES]           = "Permission denied.",
+  [EFAULT]           = "Bad address.",
+  [EBUSY]            = "Device or resource busy.",
+  [EEXIST]           = "File exists.",
+  [EXDEV]            = "Cross-device link.",
+  [ENODEV]           = "No such device.",
+  [ENOTDIR]          = "Not a directory or a symbolic link to a directory.",
+  [EISDIR]           = "Is a directory.",
+  [EINVAL]           = "Invalid argument.",
+  [ENFILE]           = "Too many files open in system.",
+  [EMFILE]           = "File descriptor value too large.",
+  [ENOTTY]           = "Inappropriate I/O control operation.",
+  [ETXTBSY]          = "Text file busy.",
+  [EFBIG]            = "File too large.",
+  [ENOSPC]           = "No space left on device.",
+  [ESPIPE]           = "Invalid seek.",
+  [EROFS]            = "Read-only file system.",
+  [EMLINK]           = "Too many links.",
+  [EPIPE]            = "Broken pipe.",
+  [EDOM]             = "Math arg out of domain of func.",
+  [ERANGE]           = "Result too large.",
+  [ENAMETOOLONG]     = "Filename too long.",
+  [ENOLCK]           = "No locks available.",
+  [ENOSYS]           = "Functionality not supported.",
+  [ENOTEMPTY]        = "Directory not empty.",
+  [ELOOP]            = "Too many levels of symbolic links.",
+  [ENOMSG]           = "No message of the desired type.",
+  [EIDRM]            = "Identifier removed.",
+  [EDEADLK]          = "Resource deadlock would occur.",
+  [EUNATCH]          = "Protocol driver not attached.",
+  [EBADE]            = "Invalid exchange.",
+  [ENOSTR]           = "Not a STREAM.",
+  [ENODATA]          = "No data available.",
+  [ETIME]            = "Timer expired.",
+  [ENOSR]            = "No STREAM resources.",
+  [ENOLINK]          = "Reserved.",
+  [EPROTO]           = "Protocol error.",
+  [EMULTIHOP]        = "Reserved.",
+  [EBADMSG]          = "Bad message.",
+  [EFTYPE]           = "Inappropriate file type or format.",
+  [EILSEQ]           = "Illegal byte sequence.",
+  [ENOTSOCK]         = "Not a socket.",
+  [EDESTADDRREQ]     = "Destination address required.",
+  [EMSGSIZE]         = "Message too large.",
+  [EPROTOTYPE]       = "Protocol wrong type for socket.",
+  [ENOPROTOOPT]      = "Protocol not available.",
+  [EPROTONOSUPPORT]  = "Protocol not supported.",
+  [EOPNOTSUPP]       = "Operation not supported on socket.",
+  [EAFNOSUPPORT]     = "Address family not supported.",
+  [EADDRINUSE]       = "Address in use.",
+  [EADDRNOTAVAIL]    = "Address not available.",
+  [ENETDOWN]         = "Network is down.",
+  [ENETUNREACH]      = "Network unreachable.",
+  [ENETRESET]        = "Connection aborted by network.",
+  [ECONNABORTED]     = "Connection aborted.",
+  [ECONNRESET]       = "Connection reset.",
+  [ENOBUFS]          = "No buffer space available.",
+  [EISCONN]          = "Socket is connected.",
+  [ENOTCONN]         = "The socket is not connected.",
+  [ETIMEDOUT]        = "Connection timed out.",
+  [ECONNREFUSED]     = "Connection refused.",
+  [EHOSTUNREACH]     = "Host is unreachable.",
+  [EALREADY]         = "Connection already in progress.",
+  [EINPROGRESS]      = "Operation in progress.",
+  [ESTALE]           = "Reserved.",
+  [EDQUOT]           = "Reserved.",
+  [ENOMEDIUM]        = "No medium inserted.",
+  [ECANCELED]        = "Operation canceled.",
+  [EOWNERDEAD]       = "Previous owner died.",
+  [ENOTRECOVERABLE]  = "State not recoverable.",
+  [EOVERFLOW]        = "Value too large to be stored in data type.",
+  [ENOTENOUGHSTACK]  = "Insufficient stack space for cross-compartment call.",
+  [ENOTENOUGHTRUSTEDSTACK] =
+    "Insufficient stack space for cross-compartment call.",
+};
+
+char *__cheri_libcall strerr(int errnum)
+{
+  if (errnum < ErrnoStrMapSize) {
+    return (char *)ErrnoStrMap[errnum];
+  }
+
+	return nullptr;
+}
