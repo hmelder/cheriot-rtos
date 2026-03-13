@@ -25,6 +25,7 @@ Types:
     size_t
 
 void* memcpy(void* restrict s1, const void* restrict s2, size_t n);
+void* memccpy(void* restrict s1, const void* restrict s2, int c, size_t n);
 void* memmove(void* s1, const void* s2, size_t n);
 char* strcpy (char* restrict s1, const char* restrict s2);
 char* strncpy(char* restrict s1, const char* restrict s2, size_t n);
@@ -67,6 +68,7 @@ _LIBCPP_BEGIN_NAMESPACE_STD
 
 using ::size_t _LIBCPP_USING_IF_EXISTS;
 using ::memcpy _LIBCPP_USING_IF_EXISTS;
+using ::memccpy _LIBCPP_USING_IF_EXISTS;
 using ::memmove _LIBCPP_USING_IF_EXISTS;
 using ::strcpy _LIBCPP_USING_IF_EXISTS;
 using ::strncpy _LIBCPP_USING_IF_EXISTS;
