@@ -9,6 +9,7 @@
 #include <riscvreg.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <timeout.h>
 
 /**
@@ -282,6 +283,13 @@ static inline void __dead2 abort()
 }
 
 #ifndef CHERIOT_NO_AMBIENT_MALLOC
+
+
+static inline void *realloc( void *ptr, size_t size ) {
+	fprintf(stderr, "WARNING: tried to realloc but this operation is not supported\n");
+	return nullptr;
+}
+
 static inline void *malloc(size_t size)
 {
 	Timeout t = {0, MALLOC_WAIT_TICKS};
