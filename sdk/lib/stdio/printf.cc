@@ -710,6 +710,14 @@ vfprintf(FILE *stream, const char *fmt, va_list ap)
 	  ap);
 }
 
+[[cheriot::interrupt_state(disabled)]] int __cheri_libcall
+fputc(int c, FILE *stream)
+{
+	auto *u = static_cast<volatile Uart *>(stream);
+	u->blocking_write(c);
+	return 1;
+}
+
 int __cheri_libcall snprintf(char *str, size_t size, const char *format, ...)
 {
 	int     rv;

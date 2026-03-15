@@ -42,6 +42,7 @@ typedef volatile void FILE;
 #endif
 
 int __cheri_libcall vfprintf(FILE *stream, const char *fmt, va_list ap);
+int __cheri_libcall fputc(int c, FILE *stream);
 
 static inline int fprintf(FILE *stream, const char *format, ...)
 {
