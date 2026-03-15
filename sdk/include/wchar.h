@@ -10,6 +10,15 @@
  */
 #include <string.h>
 
+#ifndef __cplusplus
+typedef unsigned short wchar_t;
+#endif
+
+#ifndef _WINT_T_DEFINED
+typedef unsigned short wint_t;
+#define _WINT_T_DEFINED
+#endif
+
 /**
  * libc++ headers require wchar.h to exist with a definition of an mbstate_t
  * structure.  We don't use this with anything, so this is just a stub.
