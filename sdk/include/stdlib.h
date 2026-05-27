@@ -285,11 +285,6 @@ static inline void __dead2 abort()
 #ifndef CHERIOT_NO_AMBIENT_MALLOC
 
 
-static inline void *realloc( void *ptr, size_t size ) {
-	fprintf(stderr, "WARNING: tried to realloc but this operation is not supported\n");
-	return nullptr;
-}
-
 static inline void *malloc(size_t size)
 {
 	Timeout t = {0, MALLOC_WAIT_TICKS};
@@ -300,6 +295,17 @@ static inline void *malloc(size_t size)
 		ptr = NULL;
 	}
 	return ptr;
+}
+
+static inline void *realloc( void *ptr, size_t size ) {
+    // Treating this as a normal alloc
+	if (!ptr) {
+	    return malloc(size);
+	}
+	fprintf(stderr, "FATAL: tried to realloc but this operation is not supported\n");
+	__builtin_trap();
+
+	return nullptr;
 }
 static inline void *calloc(size_t nmemb, size_t size)
 {
